@@ -7,6 +7,7 @@ Created on Tue Mar 29 12:09:32 2022
 import networkx as nx 
 import matplotlib.pyplot as plt
 import matplotlib.animation as manimation
+f = 1000
 n = 1000
 g =nx.Graph()
 pos=nx.get_node_attributes(g,'pos')
@@ -14,7 +15,6 @@ FFMpegWriter = manimation.writers['ffmpeg']
 metadata = dict(title='Movie Test', artist='Matplotlib',
                 comment='a red circle following a blue sine wave')
 writer = FFMpegWriter(fps=240, metadata=metadata)
-
 
 fig = plt.figure()
 populations = [10000,23450,30000,50000,100000]
@@ -51,13 +51,17 @@ with writer.saving(fig, "writer_test.mp4", 100):
         red_circle.set_data([1000],[i])
         writer.grab_frame()
     for i in range(n):
-        red_circle.set_data([i],[1])
+        red_circle.set_data([i],[i])
         writer.grab_frame()
-    for i in range(1000,1):
-        red_circle.set_data([i],[1])
-        writer.grab_frame()
-#last for loop isnt working
-#increase n maybe?
+    for i in range(n):
+        while f > 1:
+            f = f-1
+            red_circle.set_data([f],[1])
+            writer.grab_frame()
+    
+
+
+
 #put all markers moving at once
 
     
