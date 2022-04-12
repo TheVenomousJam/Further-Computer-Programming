@@ -37,7 +37,7 @@ g.add_edges_from([("B","C"),("A","B"),("C","D"),("D","E"),("B","E"),("A","E")])
 g.add_edges_from([("D","A"),("C","E")])
 pos=nx.get_node_attributes(g,'pos')
 print(pos)
-nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True), node_color='red')
+nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True), node_color='blue')
 red_circle1, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
 red_circle2, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
 red_circle3, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
@@ -54,16 +54,14 @@ with writer.saving(fig, "writer_test.mp4", 100):
         while f > 1:
             f = f-1
             red_circle5.set_data([f],[1])
+            red_circle1.set_marker(None)
             writer.grab_frame()
-    
 
 
+# Next make markers disappear after finished
 
 
-
-    
-
-#next try and change color over time
+#next try and change color over time after markers disappear
 
 
 
