@@ -14,7 +14,7 @@ pos=nx.get_node_attributes(g,'pos')
 FFMpegWriter = manimation.writers['ffmpeg']
 metadata = dict(title='Movie Test', artist='Matplotlib',
                 comment='red circles following edges')
-writer = FFMpegWriter(fps=40, metadata=metadata)
+writer = FFMpegWriter(fps=30, metadata=metadata)
 
 fig = plt.figure()
 populations = [10000,23450,30000,50000,100000]#changes size of nodes
@@ -56,12 +56,27 @@ with writer.saving(fig, "writer_test.mp4", 100):
             red_circle5.set_data([f],[1])
             red_circle1.set_marker(None) # makes plot disappear
             writer.grab_frame()
-    nx.draw(g,pos,node_color='red')
-    writer.grab_frame()
-
-
-
-#colour does change but very minorly need to make multiple colour changes
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color={'orange', 'red', 'black' ,'blue' ,'green'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='teal')
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='turquoise')
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='purple')
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='violet')
+    for i in range(60):
+        writer.grab_frame()
+    colors = [i/len(g.nodes) for i in range(len(g.nodes))]
+    nx.draw(g, pos,node_size=areas, node_color=colors)
+    for i in range(60):
+        writer.grab_frame()
+# need to learn to remove graph
+#Have multiple colour changes, different nodes can have different colours, just need to make it smoother
 
 
 
