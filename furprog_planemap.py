@@ -56,19 +56,25 @@ with writer.saving(fig, "writer_test.mp4", 100):
             red_circle5.set_data([f],[1])
             red_circle1.set_marker(None) # makes plot disappear
             writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color={'orange', 'red', 'black' ,'blue' ,'green'})
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color={'whitesmoke', 'red', 'black' ,'blue' ,'green'})
     for i in range(60):
         writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='teal')
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='gainsboro')
     for i in range(60):
         writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='turquoise')
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='lightgray')
     for i in range(60):
         writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='purple')
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='lightgrey')
     for i in range(60):
         writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='violet')
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='silver')
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='darkgray')
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='darkgrey')
     for i in range(60):
         writer.grab_frame()
     colors = [i/len(g.nodes) for i in range(len(g.nodes))]
