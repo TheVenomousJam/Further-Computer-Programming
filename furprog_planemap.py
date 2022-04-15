@@ -27,7 +27,7 @@ labels={}
 areas = []
 for i in range (0,len(populations)):
     areas.append((populations[i]/popdensity[i])*100)
-    labels[names[i]] = f"port {i+1}"     
+    labels[names[i]] = f"airport {i+1}"     
 
 for i in range (0,5):
     g.add_node(names[i],pos=pos[i],)
@@ -37,12 +37,16 @@ g.add_edges_from([("B","C"),("A","B"),("C","D"),("D","E"),("B","E"),("A","E")])
 g.add_edges_from([("D","A"),("C","E")])
 pos=nx.get_node_attributes(g,'pos')
 print(pos)
-nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='green') 
+nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='green')  
 red_circle1, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
 red_circle2, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
 red_circle3, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
 red_circle4, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
 red_circle5, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
+red_circle6, = plt.plot([50], [70], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
+plane = plt.text(50,70,'Planes')
+
+
 with writer.saving(fig, "writer_test.mp4", 100):
     for i in range(n):
         red_circle1.set_data([1],[i])
@@ -54,27 +58,36 @@ with writer.saving(fig, "writer_test.mp4", 100):
         while f > 1:
             f = f-1
             red_circle5.set_data([f],[1])
-            red_circle1.set_marker(None) # makes plot disappear
+            red_circle1.set_marker(None)
+            red_circle2.set_marker(None)
+            red_circle3.set_marker(None)
+            red_circle4.set_marker(None)
             writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color={'whitesmoke', 'red', 'black' ,'blue' ,'green'})
+        red_circle5.set_marker(None)# makes plot disappear
+        writer.grab_frame()
+    red_circle6.set_marker(None)
+    plane.remove()
     for i in range(60):
         writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='gainsboro')
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'whitesmoke', 'red', 'black' ,'blue' ,'green'})
     for i in range(60):
         writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='lightgray')
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color='gainsboro')
     for i in range(60):
         writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='lightgrey')
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color='lightgray')
     for i in range(60):
         writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='silver')
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color='lightgrey')
     for i in range(60):
         writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='darkgray')
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color='silver')
     for i in range(60):
         writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='darkgrey')
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color='darkgray')
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color='darkgrey')
     for i in range(60):
         writer.grab_frame()
     colors = [i/len(g.nodes) for i in range(len(g.nodes))]
@@ -82,8 +95,8 @@ with writer.saving(fig, "writer_test.mp4", 100):
     for i in range(60):
         writer.grab_frame()
 # need to learn to remove graph
-#Have multiple colour changes, different nodes can have different colours, just need to make it smoother
-
+#colour changes are now smoother just need more suitable colours for the changes
+#
 
 
 #next bar chart, and number of infected
