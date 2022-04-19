@@ -14,7 +14,7 @@ pos=nx.get_node_attributes(g,'pos')
 FFMpegWriter = manimation.writers['ffmpeg']
 metadata = dict(title='Movie Test', artist='Matplotlib',
                 comment='red circles following edges')
-writer = FFMpegWriter(fps=30, metadata=metadata)
+writer = FFMpegWriter(fps=60, metadata=metadata)
 
 fig = plt.figure()
 populations = [10000,23450,30000,50000,100000]#changes size of nodes
@@ -53,25 +53,27 @@ with writer.saving(fig, "writer_test.mp4", 100):
         red_circle2.set_data([i],[100])
         red_circle3.set_data([100],[i])
         red_circle4.set_data([i],[i])
+        red_circle5.set_data([i/2],[i/2])
+        writer.grab_frame()
+    for i in range(15):
         writer.grab_frame()
     for i in range(n):
         while f > 1:
             f = f-1
             red_circle5.set_data([f],[1])
-            red_circle1.set_marker(None)
-            red_circle2.set_marker(None)
-            red_circle3.set_marker(None)
-            red_circle4.set_marker(None)
+            red_circle3.set_data([f],[100])
+            red_circle4.set_data([f],[f])
             writer.grab_frame()
+        red_circle1.set_marker(None)
+        red_circle2.set_marker(None)
+        red_circle3.set_marker(None)
+        red_circle4.set_marker(None)
         red_circle5.set_marker(None)# makes plot disappear
         writer.grab_frame()
     red_circle6.set_marker(None)
     plane.remove()
-    for i in range(60):
-        writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'whitesmoke', 'red', 'black' ,'blue' ,'green'})
-    for i in range(60):
-        writer.grab_frame()
+    writer.grab_frame()
+
     nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color='gainsboro')
     for i in range(60):
         writer.grab_frame()
@@ -92,6 +94,9 @@ with writer.saving(fig, "writer_test.mp4", 100):
         writer.grab_frame()
     colors = [i/len(g.nodes) for i in range(len(g.nodes))]
     nx.draw(g, pos,node_size=areas, node_color=colors)
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'whitesmoke', 'red', 'black' ,'blue' ,'green'})
     for i in range(60):
         writer.grab_frame()
 # need to learn to remove graph
