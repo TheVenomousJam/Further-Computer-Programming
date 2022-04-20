@@ -7,6 +7,7 @@ Created on Tue Mar 29 12:09:32 2022
 import networkx as nx 
 import matplotlib.pyplot as plt
 import matplotlib.animation as manimation
+import random as r
 f = 100
 n = 101
 g =nx.Graph()
@@ -189,6 +190,189 @@ with writer.saving(fig, "writer_test.mp4", 100):
 
 #next bar chart, and number of infected
 
+#kind of inefficient way to do it maybe, but it works :)
+#node colours are: kermit green, lime, greeny yellow, lemon yellow, amber, bright orange, tomato red
+node_colours = ['5cb200','aaff32','c6f808','fdff38','feb308','ff5b00','ec2d01']
+#next is to find a way to cycle through these as the plane touches the node, put a,b,c,d,e = 0 at top and add one to the letter for that node maybe?
+def flight1():
+#    with writer.saving(fig, "writer_test.mp4", 100):
+        destination = r.randint(1,5)
+        if destination == 1: 
+            flight1()
+        elif destination == 2:
+            for i in range(n):
+                red_circle1.set_data([0],[i])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight2()
+        elif destination == 3:
+            for i in range(n):
+                red_circle1.set_data([i],[i])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight3()
+        elif destination == 4:
+            for i in range(n):
+                red_circle1.set_data([i],[0])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight4()
+        elif destination == 5:
+            for i in range(n):
+                red_circle1.set_data([i/2],[i/2])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight5()
+
+
+def flight2():
+#    with writer.saving(fig, "writer_test.mp4", 100):
+        destination = r.randint(1,5)
+        if destination == 1: 
+            for i in range(n):
+                red_circle1.set_data([0],[100-i])
+                writer.grab_frame()    
+        elif destination == 2:
+            flight2()
+        elif destination == 3:
+            for i in range(n):
+                red_circle1.set_data([i],[100])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight3()
+        elif destination == 4:
+            for i in range(n):
+                red_circle1.set_data([i],[100-i])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight4()
+        elif destination == 5:
+            for i in range(n):
+                red_circle1.set_data([i/2],[100-(i/2)])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight5()
+        for i in range(120):
+            writer.grab_frame()
+            
+def flight3():
+#    with writer.saving(fig, "writer_test.mp4", 100):
+        destination = r.randint(1,5)
+        if destination == 1: 
+            for i in range(n):
+                red_circle1.set_data([100-i],[100-i])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight1()
+        elif destination == 2:
+            for i in range(n):
+                red_circle1.set_data([100-i],[100])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight2()
+        elif destination == 3:
+            flight3()
+        elif destination == 4:
+            for i in range(n):
+                red_circle1.set_data([100],[100-i])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight4()
+        elif destination == 5:
+            for i in range(n):
+                red_circle1.set_data([100-(i/2)],[100-(i/2)])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight5()
+        for i in range(120):
+            writer.grab_frame()
+            
+def flight4():
+#    with writer.saving(fig, "writer_test.mp4", 100):
+        destination = r.randint(1,5)
+        if destination == 1: 
+            for i in range(n):
+                red_circle1.set_data([100-i],[0])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight1()
+        elif destination == 2:
+            for i in range(n):
+                red_circle1.set_data([100-i],[i])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight2()
+        elif destination == 3:
+            for i in range(n):
+                red_circle1.set_data([100],[i])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight3()
+        elif destination == 4:
+            for i in range(n):
+                flight4()
+        elif destination == 5:
+            for i in range(n):
+                red_circle1.set_data([100-(i/2)],[i/2])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight5()
+        for i in range(120):
+            writer.grab_frame()
+            
+def flight5():
+#    with writer.saving(fig, "writer_test.mp4", 100):
+        destination = r.randint(1,5)
+        if destination == 1: 
+            for i in range(n):
+                red_circle1.set_data([50-(i/2)],[50-(i/2)])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight1()
+        elif destination == 2:
+            for i in range(n):
+                red_circle1.set_data([50-(i/2)],[50+i/2])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight2()
+        elif destination == 3:
+            for i in range(n):
+                red_circle1.set_data([50+i/2],[50+i/2])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight3()
+        elif destination == 4:
+            for i in range(n):
+                red_circle1.set_data([50+i/2],[50-(i/2)])
+                writer.grab_frame()
+            for i in range(30):
+                writer.grab_frame()
+            flight4()
+        elif destination == 5:
+            flight5()
+        for i in range(120):
+            writer.grab_frame()
+
+with writer.saving(fig, "writer_test.mp4", 100):
+    flight1()
 
 
 
