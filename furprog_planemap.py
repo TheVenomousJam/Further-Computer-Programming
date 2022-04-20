@@ -37,7 +37,7 @@ g.add_edges_from([("B","C"),("A","B"),("C","D"),("D","E"),("B","E"),("A","E")])
 g.add_edges_from([("D","A"),("C","E")])
 pos=nx.get_node_attributes(g,'pos')
 print(pos)
-nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color='green')  
+nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color={'#fcfcfc', '#ff0000', '#ffffff' ,'#fefefe' ,'#fdfdfd'})  
 red_circle1, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
 red_circle2, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
 red_circle3, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
@@ -74,29 +74,112 @@ with writer.saving(fig, "writer_test.mp4", 100):
     plane.remove()
     writer.grab_frame()
 
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color='gainsboro')
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffffff' ,'#fefefe' ,'#fdfdfd'})
     for i in range(60):
         writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color='lightgray')
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffeded' ,'#fefefe' ,'#fdfdfd'})
     for i in range(60):
         writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color='lightgrey')
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffecec' ,'#fefefe' ,'#fdfdfd'})
     for i in range(60):
         writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color='silver')
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffebeb' ,'#fefefe' ,'#fdfdfd'})
     for i in range(60):
         writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color='darkgray')
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffeaea' ,'#fefefe' ,'#fdfdfd'})
     for i in range(60):
         writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color='darkgrey')
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffe9e9' ,'#fefefe' ,'#fdfdfd'})
     for i in range(60):
         writer.grab_frame()
-    colors = [i/len(g.nodes) for i in range(len(g.nodes))]
-    nx.draw(g, pos,node_size=areas, node_color=colors)
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffe8e8' ,'#fefefe' ,'#fdfdfd'})
     for i in range(60):
         writer.grab_frame()
-    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'whitesmoke', 'red', 'black' ,'blue' ,'green'})
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffe7e7' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffe6e6' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffe5e5' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffe4e4' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffe3e3' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffe2e2' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffe1e1' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffe0e0' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffdddd' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffdcdc' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffd9d9' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffd6d6' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffd2d2' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffd0d0' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffcccc' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffc7c7' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffc3c3' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffb8b8' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ffa6a6' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ff9191' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ff8585' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ff7979' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ff6767' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ff5c5c' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ff5151' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ff4545' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ff3131' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ff2727' ,'#fefefe' ,'#fdfdfd'})
+    for i in range(60):
+        writer.grab_frame()
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color={'#fcfcfc', '#ff0000', '#ff1b1b' ,'#fefefe' ,'#fdfdfd'})
     for i in range(60):
         writer.grab_frame()
 # need to learn to remove graph
