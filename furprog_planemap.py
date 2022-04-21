@@ -23,6 +23,15 @@ popdensity = [5000,2000,8000,10000,6000]#changes size of nodes
 names = ["A","B","C","D","E"]
 pos=[(1,1),(1,100),(100,100),(100,1),(50,50)]
 
+node_colours = ['#5cb200','#c6f808','#fdff38','#fc824a','#ec2d01']
+#node colours are: kermit green, greeny yellow, lemon yellow, orange ish, tomato red
+#these variables will be the index values for node_colours for each node a = node 1 etc.
+a = 0
+b = 0
+c = 0
+d = 0
+e = 0
+
 nodeSize = []
 labels={}
 areas = []
@@ -38,7 +47,9 @@ g.add_edges_from([("B","C"),("A","B"),("C","D"),("D","E"),("B","E"),("A","E")])
 g.add_edges_from([("D","A"),("C","E")])
 pos=nx.get_node_attributes(g,'pos')
 print(pos)
-nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color={'#fcfcfc', '#ff0000', '#ffffff' ,'#fefefe' ,'#fdfdfd'})  
+#the one commented out is the one to make James' code work
+#nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color={'#fcfcfc', '#ff0000', '#ffffff' ,'#fefefe' ,'#fdfdfd'})
+nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
 red_circle1, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
 red_circle2, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
 red_circle3, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
@@ -47,7 +58,7 @@ red_circle5, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = (
 red_circle6, = plt.plot([50], [70], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
 plane = plt.text(50,70,'Planes')
 
-
+'''
 with writer.saving(fig, "writer_test.mp4", 100):
     for i in range(n):
         red_circle1.set_data([1],[i])
@@ -190,12 +201,18 @@ with writer.saving(fig, "writer_test.mp4", 100):
 
 #next bar chart, and number of infected
 
-#kind of inefficient way to do it maybe, but it works :)
-#node colours are: kermit green, lime, greeny yellow, lemon yellow, amber, bright orange, tomato red
-node_colours = ['5cb200','aaff32','c6f808','fdff38','feb308','ff5b00','ec2d01']
-#next is to find a way to cycle through these as the plane touches the node, put a,b,c,d,e = 0 at top and add one to the letter for that node maybe?
+'''
+
+
 def flight1():
 #    with writer.saving(fig, "writer_test.mp4", 100):
+        global a,b,c,d,e
+        a += 1
+        for i in range (1):
+            nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
+            writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
         destination = r.randint(1,5)
         if destination == 1: 
             flight1()
@@ -231,6 +248,13 @@ def flight1():
 
 def flight2():
 #    with writer.saving(fig, "writer_test.mp4", 100):
+        global a,b,c,d,e
+        b+=1
+        for i in range (1):
+            nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
+            writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
         destination = r.randint(1,5)
         if destination == 1: 
             for i in range(n):
@@ -264,6 +288,13 @@ def flight2():
             
 def flight3():
 #    with writer.saving(fig, "writer_test.mp4", 100):
+        global a,b,c,d,e
+        c+=1
+        for i in range (1):
+            nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
+            writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
         destination = r.randint(1,5)
         if destination == 1: 
             for i in range(n):
@@ -300,6 +331,13 @@ def flight3():
             
 def flight4():
 #    with writer.saving(fig, "writer_test.mp4", 100):
+        global a,b,c,d,e
+        d+=1
+        for i in range(1):
+            nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
+            writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
         destination = r.randint(1,5)
         if destination == 1: 
             for i in range(n):
@@ -337,6 +375,13 @@ def flight4():
             
 def flight5():
 #    with writer.saving(fig, "writer_test.mp4", 100):
+        global a,b,c,d,e
+        e+=1
+        for i in range (1):
+            nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
+            writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
         destination = r.randint(1,5)
         if destination == 1: 
             for i in range(n):
@@ -374,11 +419,9 @@ def flight5():
 with writer.saving(fig, "writer_test.mp4", 100):
     flight1()
 
+#need to press the red square on the console when you want it to end, otherwise it'll carry on forever. :)
 
-
-
-
-
+#next thing to work out is how to avoid the colours changing more than once due to the plane staying on the node. (when random number = node number)
 
 
 
