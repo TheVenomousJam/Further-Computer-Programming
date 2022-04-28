@@ -38,6 +38,9 @@ def infection_proportion():
     RVL = 0.6
     for i in range(weeks):
         #inf_x = proportion of infected people in x on day i
+        #inf_x = PIx[i] + (PIx[i] * RVx) - PIx[i], so PIx[i] cancel to simplify
+        #this works because I'm using weeks rather than days
+        #so the infectious period is only 1 interation in the loop
         if PIA[i] > PCL:
             #lockdown enforced
             inf_A = (PIA[i] * RVL)
