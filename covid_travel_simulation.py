@@ -22,7 +22,7 @@ infection_period = 1 #the number of days one person can infect another
 plane_size = 100 #number of people on plane
 airports = ['A','B','C','D','E']
 #100 days is about 14weeks
-weeks = 14
+weeks = 100
 week = list(range(weeks+1))
 #just to create a list of week numbers to use for the graph
 #print(week)
@@ -55,49 +55,50 @@ Changeable info for animation
 =========================
 '''
 # at the moment this is commented out so that the network diagram 
-# doesnt overlap with the graph
+# doesnt overlap with the graph, need to find a way to make this not happen.
+'''
+f = 100
+n = 101
+g =nx.Graph()
+pos=nx.get_node_attributes(g,'pos')
+FFMpegWriter = manimation.writers['ffmpeg']
+metadata = dict(title='Movie Test', artist='Matplotlib',
+                comment='red circles following edges')
+writer = FFMpegWriter(fps=60, metadata=metadata)
 
-# f = 100
-# n = 101
-# g =nx.Graph()
-# pos=nx.get_node_attributes(g,'pos')
-# FFMpegWriter = manimation.writers['ffmpeg']
-# metadata = dict(title='Movie Test', artist='Matplotlib',
-#                 comment='red circles following edges')
-# writer = FFMpegWriter(fps=60, metadata=metadata)
+fig = plt.figure()
+populations = [10000,23450,30000,50000,100000]#changes size of nodes
+popdensity = [5000,2000,8000,10000,6000]#changes size of nodes
+names = ["A","B","C","D","E"]
+pos=[(1,1),(1,100),(100,100),(100,1),(50,50)]
 
-# fig = plt.figure()
-# populations = [10000,23450,30000,50000,100000]#changes size of nodes
-# popdensity = [5000,2000,8000,10000,6000]#changes size of nodes
-# names = ["A","B","C","D","E"]
-# pos=[(1,1),(1,100),(100,100),(100,1),(50,50)]
+node_colours = ['#5cb200','#c6f808','#fdff38','#fc824a','#ec2d01']
+#node colours are: kermit green, greeny yellow, lemon yellow, orange ish, tomato red
+#these variables will be the index values for node_colours for each node a = node 1 etc.
+a = 0
+b = 0
+c = 0
+d = 0
+e = 0
 
-# node_colours = ['#5cb200','#c6f808','#fdff38','#fc824a','#ec2d01']
-# #node colours are: kermit green, greeny yellow, lemon yellow, orange ish, tomato red
-# #these variables will be the index values for node_colours for each node a = node 1 etc.
-# a = 0
-# b = 0
-# c = 0
-# d = 0
-# e = 0
+nodeSize = []
+labels={}
+areas = []
+for i in range (0,len(populations)):
+    areas.append((populations[i]/popdensity[i])*100)
+    labels[names[i]] = f"airport {i+1}"     
 
-# nodeSize = []
-# labels={}
-# areas = []
-# for i in range (0,len(populations)):
-#     areas.append((populations[i]/popdensity[i])*100)
-#     labels[names[i]] = f"airport {i+1}"     
-
-# for i in range (0,5):
-#     g.add_node(names[i],pos=pos[i],)
+for i in range (0,5):
+    g.add_node(names[i],pos=pos[i],)
 
 
-# g.add_edges_from([("B","C"),("A","B"),("C","D"),("D","E"),("B","E"),("A","E")])
-# g.add_edges_from([("D","A"),("C","E")])
-# pos=nx.get_node_attributes(g,'pos')
-# print(pos)
-# nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
-# red_circle1, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
+g.add_edges_from([("B","C"),("A","B"),("C","D"),("D","E"),("B","E"),("A","E")])
+g.add_edges_from([("D","A"),("C","E")])
+pos=nx.get_node_attributes(g,'pos')
+print(pos)
+nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(True),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
+red_circle1, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = ("plane"))
+'''
 '''
 =========================
 '''
@@ -105,10 +106,11 @@ Changeable info for animation
 
 def infection_proportion():
     for i in range(weeks):
-    #inf_x = proportion of infected people in x on day i
-    #inf_x = PIx[i] + (PIx[i] * RVx) - PIx[i], so PIx[i] cancel to simplify
-    #this works because I'm using weeks rather than days
-    #so the infectious period is only 1 interation in the loop
+    # inf_x = proportion of infected people in x on day i
+    # inf_x = PIx[i] + (PIx[i] * RVx) - PIx[i], so PIx[i] cancel to simplify
+    # this works because I'm using weeks rather than days
+    # so the infectious period is only 1 interation in the loop
+    # this assumes no-one has long covid
 #lockdown        
         if PIA[i] > PCL:
             #lockdown enforced
@@ -130,7 +132,7 @@ def infection_proportion():
             inf_D = (PID[i] * RVL)
         else:        
             inf_D = (PID[i] * RVD)
-        if PIC[i] > PCL:
+        if PIE[i] > PCL:
             #lockdown enforced
             inf_E = (PIE[i] * RVL)
         else:        
@@ -143,9 +145,11 @@ def infection_proportion():
             end_index = r.randint(1,4)
             start_point = airports[start_index]
             end_point = airports[start_index - end_index]
+            # doing it this way guarantees that the planes can't go from A to A etc.
             start_list.append(start_point)
             end_list.append(end_point)
-            #doing it this way guarantees that the planes can't go from A to A etc.
+            # creating these lists is so we have the data for the animation
+            # this long if statement is adding the covid from the flights to the current infection rates.
             if start_point == 'A':
                 if end_point == 'B':
                     inf_B += PIA[i]*RVA/10
@@ -209,7 +213,7 @@ def infection_proportion():
     plt.legend(airports)
     plt.show()
     
-
+# these functions create the path for the plane to follow
 def flight_from_A():
     if end_list[f] == 'B':
         for b in range(n):
@@ -333,36 +337,6 @@ if graph_or_animation == 'g':
 elif graph_or_animation == 'a':
     with writer.saving(fig, "writer_test.mp4", 100):    
         node_animation()
-
-
-
-        
-
-
-
-    
-
-    
-    
-    
-'''    
-if end_list[f] == 'B':
-    for b in range(n):
-        red_circle1.set_data([0],[b])
-        writer.grab_frame()
-elif end_list[f] == 'C':
-    for b in range(n):
-        red_circle1.set_data([b],[b])
-        writer.grab_frame()
-elif end_list[f] == 'D':
-    for b in range(n):
-        red_circle1.set_data([b],[0])
-        writer.grab_frame()
-elif end_list[f] == 'E':
-    for b in range(n):
-        red_circle1.set_data([b/2],[b/2])
-        writer.grab_frame()
-'''
 
 
 
