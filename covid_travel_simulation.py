@@ -24,6 +24,7 @@ airports = ['A','B','C','D','E']
 #100 days is about 14weeks
 weeks = 100
 week = list(range(weeks+1))
+print(week)
 #just to create a list of week numbers to use for the graph
 #print(week)
 #PIx = Proportion of people who are infected with covid in x
@@ -102,8 +103,11 @@ red_circle1, = plt.plot([], [], 'ro', markersize = 15, linewidth = 50, label = (
 '''
 =========================
 '''
-
-
+FFMpegWriter = manimation.writers['ffmpeg']
+metadata = dict(title='Movie Test', artist='Matplotlib',
+                comment='red circles following edges')
+writer = FFMpegWriter(fps=60, metadata=metadata)
+fig = plt.figure()
 def infection_proportion():
     for i in range(weeks):
     # inf_x = proportion of infected people in x on day i
@@ -204,7 +208,8 @@ def infection_proportion():
         PIC.append(inf_C)
         PID.append(inf_D)
         PIE.append(inf_E)
-    print('A', PIA,'\nB', PIB,'\nC', PIC,'\nD', PID,'\nE', PIE)  
+
+        
     plt.plot(week,PIA)
     plt.plot(week,PIB)
     plt.plot(week,PIC)
@@ -212,7 +217,17 @@ def infection_proportion():
     plt.plot(week,PIE)
     plt.legend(airports)
     plt.show()
-    
+           # PIA.append(inf_A)
+            #PIB.append(inf_B)
+          #  PIC.append(inf_C)
+           # PID.append(inf_D)
+           # PIE.append(inf_E)
+       # print(i,PIA[i])
+        #for s in range(1):
+         #   writer.grab_frame()
+
+
+    #print('A', PIA,'\nB', PIB,'\nC', PIC,'\nD', PID,'\nE', PIE)     
 # these functions create the path for the plane to follow
 def flight_from_A():
     if end_list[f] == 'B':
@@ -333,7 +348,7 @@ def node_animation():
     
 graph_or_animation = input('Do you want to see a graph or an animation?\nType g or a\n')
 if graph_or_animation == 'g':
-    infection_proportion()
+        infection_proportion()
 elif graph_or_animation == 'a':
     with writer.saving(fig, "writer_test.mp4", 100):    
         node_animation()
