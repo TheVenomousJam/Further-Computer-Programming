@@ -221,15 +221,15 @@ def infection_proportion():
 # these functions create the path for the plane to follow
 def flight1():
     global a,b,c,d,e
-    if PIA[20] == 0:
+    if PIA[weeks] == 0:
         a = a
-    elif 0 <PIA[20]< 0.025:
+    elif 0 <PIA[weeks]< 0.025:
         a += 1
-    elif 0.025 < PIA[20]< 0.075:
+    elif 0.025 < PIA[weeks]< 0.075:
         a += 2 
-    elif 0.075 < PIA[20]< 0.125:
+    elif 0.075 < PIA[weeks]< 0.125:
         a += 3
-    elif 0.125 < PIA[20]< 0.175:
+    elif 0.125 < PIA[weeks]< 0.175:
         a += 4
     nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
 
@@ -269,15 +269,15 @@ def flight1():
 def flight2():
     global a,b,c,d,e
   
-    if PIB[20] == 0:
+    if PIB[weeks] == 0:
         b=b
-    elif 0 <PIB[20]< 0.025:
+    elif 0 <PIB[weeks]< 0.025:
         b+=1
-    elif 0.025 < PIB[20]< 0.075:
+    elif 0.025 < PIB[weeks]< 0.075:
         b+=2
-    elif 0.075 < PIB[20]< 0.125:
+    elif 0.075 < PIB[weeks]< 0.125:
         b+=3
-    elif 0.125 < PIB[20]< 0.175:
+    elif 0.125 < PIB[weeks]< 0.175:
         b+=4
     nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
     for i in range(10):
@@ -315,15 +315,15 @@ def flight2():
 def flight3():
         global a,b,c,d,e
       
-        if PIC[20] == 0:
+        if PIC[weeks] == 0:
             c+=1
-        elif 0 <PIC[20]< 0.025:
+        elif 0 <PIC[weeks]< 0.025:
             c+=1
-        elif 0.025 < PIC[20]< 0.075:
+        elif 0.025 < PIC[weeks]< 0.075:
             c+=1
-        elif 0.075 < PIC[20]< 0.125:
+        elif 0.075 < PIC[weeks]< 0.125:
             c+=1
-        elif 0.125 < PIC[20]< 0.175:
+        elif 0.125 < PIC[weeks]< 0.175:
             c+=1
         nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
 
@@ -364,15 +364,15 @@ def flight3():
 def flight4():
         global a,b,c,d,e    
   
-        if PID[20] == 0:
+        if PID[weeks] == 0:
             d+=1
-        elif 0 <PID[20]< 0.025:
+        elif 0 <PID[weeks]< 0.025:
             d+=1
-        elif 0.025 < PID[20]< 0.075:
+        elif 0.025 < PID[weeks]< 0.075:
             d+=1
-        elif 0.075 < PID[20]< 0.125:
+        elif 0.075 < PID[weeks]< 0.125:
             d+=1
-        elif 0.125 < PID[20]< 0.175:
+        elif 0.125 < PID[weeks]< 0.175:
             d+=1
         nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
 
@@ -416,15 +416,15 @@ def flight5():
 #    with writer.saving(fig, "writer_test.mp4", 100):
         global a,b,c,d,e
       
-        if PIE[20] == 0:
+        if PIE[weeks] == 0:
             e+=1
-        elif 0 <PIE[20]< 0.025:
+        elif 0 <PIE[weeks]< 0.025:
             e+=1
-        elif 0.025 < PIE[20]< 0.075:
+        elif 0.025 < PIE[weeks]< 0.075:
             e+=1
-        elif 0.075 < PIE[20]< 0.125:
+        elif 0.075 < PIE[weeks]< 0.125:
             e+=1
-        elif 0.125 < PIE[20]< 0.175:
+        elif 0.125 < PIE[weeks]< 0.175:
             e+=1
         nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
         for i in range(30):
