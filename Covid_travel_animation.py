@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+@author: jacke
+"""
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -6,35 +11,59 @@ import networkx  as nx
 import random as r
 #from furprog_planemap import *
 
+'''
+=========================
+Changeable info for graph
+=========================
+'''
 
-infection_period = 1 #the number of days one person can infect another
-plane_size = 100 #number of people on plane
+infection_period = int(input("length of infection period\n")) #the number of days one person can infect another
+plane_size = int(input("enter plane size\n")) #number of people on plane
 airports = ['A','B','C','D','E']
 #100 days is about 14weeks
-weeks = 40
+weeks = int(input("enter number of weeks simulation will run\n"))
 week = list(range(weeks+1))
-
+print(week)
 #just to create a list of week numbers to use for the graph
 #print(week)
 #PIx = Proportion of people who are infected with covid in x
-PIA = [0.00]
-PIB = [0.01]
-PIC = [0.02]
-PID = [0.04]
-PIE = [0.07]
+
+
+
+PIA = float(input("enter airport A proportion of infected\n"))
+PIB = float(input("enter airport B proportion of infected\n"))
+PIC = float(input("enter airport C proportion of infected\n"))
+PID = float(input("enter airport D proportion of infected\n"))
+PIE = float(input("enter airport E proportion of infected\n"))
+PIA = [PIA]
+PIB = [PIB]
+PIC = [PIC]
+PID = [PID]
+PIE = [PIE]
+
+# =============================================================================
+# PIA = [0.00]
+# PIB = [0.01]
+# PIC = [0.02]
+# PID = [0.04]
+# PIE = [0.07]
+# =============================================================================
 #PCL = proportion of people with covid that causes a lockdown
-PCL = 0.15
+#0.15
+PCL = float(input("proportion of infected to trigger lockdown\n"))
 #RVx = R value for x
-RVA = 1.00
-RVB = 0.95
-RVC = 1.05
-RVD = 1.10
-RVE = 0.90
+#[1.00,0.95,1.05,1.10,0.90]
+RVA = float(input("R value for A"))
+RVB = float(input("R value for B"))
+RVC = float(input("R value for C"))
+RVD = float(input("R value for D"))
+RVE = float(input("R value for E"))
 #RVL = the R value during a lockdown
-RVL = 0.6
+RVL = float(input("R value during lockdown"))
 #start_list & end_list act as a flight log to use for the animation
 start_list = []
 end_list = []
+
 
 
 FFMpegWriter = manimation.writers['ffmpeg']
