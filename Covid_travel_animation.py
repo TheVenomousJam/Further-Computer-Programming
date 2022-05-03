@@ -11,7 +11,7 @@ infection_period = 1 #the number of days one person can infect another
 plane_size = 100 #number of people on plane
 airports = ['A','B','C','D','E']
 #100 days is about 14weeks
-weeks = 100
+weeks = 40
 week = list(range(weeks+1))
 
 #just to create a list of week numbers to use for the graph
@@ -142,37 +142,43 @@ def infection_proportion():
         PIC.append(inf_C)
         PID.append(inf_D)
         PIE.append(inf_E)
-
-    for z in range(100):
+    
+    for z in range(weeks):
         plot1 = plt.figure(1)
         plt.plot(week[z:z+2],PIA[z:z+2])
-        plt.legend(airports)
-        writer.grab_frame()
-    for z in range(100):
-        plot2 = plt.figure(2)
         plt.plot(week[z:z+2],PIB[z:z+2])
-        writer.grab_frame()
-    for z in range(100):
-        plot3 = plt.figure(3)
         plt.plot(week[z:z+2],PIC[z:z+2])
-        writer.grab_frame()
-    for z in range(100):
-        plot4 = plt.figure(4)
         plt.plot(week[z:z+2],PID[z:z+2])
-        writer.grab_frame()
-    for z in range(100):        
-        plot5 = plt.figure(5)
         plt.plot(week[z:z+2],PIE[z:z+2])
         plt.legend(airports)
         writer.grab_frame()
-
+#    for z in range(weeks):
+ #       plot2 = plt.figure(2)
+  #      plt.plot(week[z:z+2],PIB[z:z+2])
+   #     writer.grab_frame()
+    #for z in range(weeks):
+     #   plot3 = plt.figure(3)
+      #  plt.plot(week[z:z+2],PIC[z:z+2])
+       # writer.grab_frame()
+    #for z in range(weeks):
+     #   plot4 = plt.figure(4)
+      #  plt.plot(week[z:z+2],PIE[z:z+2])
+       # writer.grab_frame()
+#    for z in range(weeks):        
+ #       plot5 = plt.figure(5)
+  #      plt.plot(week[z:z+2],PIE[z:z+2])
+   #     plt.legend(airports)
+    #    plt.xlabel('Days')
+     #   plt.ylabel('percentage of population infected')
+      #  writer.grab_frame()
     plt.show()
 
 
 
 
 
-graph_or_animation = input('Do you want to see a graph or an animation?\nType g or a\n')
-if graph_or_animation == 'g':
-    with writer.saving(fig, "writer_test.mp4", 100):
-        infection_proportion()
+
+
+
+with writer.saving(fig, "writer_test.mp4", 100):
+    infection_proportion()
