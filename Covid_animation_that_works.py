@@ -3,7 +3,7 @@
 """
 
 
-@author: guy james nic jack
+@authors: Guy, James, Nic, Jack
 """
 
 import numpy as np
@@ -67,9 +67,6 @@ node_colours = ['#5cb200','#c6f808','#fdff38','#fc824a','#ec2d01']
 #Changeable info for animation
 #=========================
 
-# at the moment this is commented out so that the network diagram 
-# doesnt overlap with the graph, need to find a way to make this not happen.
-
 f = 100
 n = 101
 g =nx.Graph()
@@ -106,39 +103,36 @@ areas = []
 
 def infection_proportion():
     for i in range(weeks):
-    # inf_x = proportion of infected people in x on day i
-    # inf_x = PIx[i] + (PIx[i] * RVx) - PIx[i], so PIx[i] cancel to simplify
-    # this works because I'm using weeks rather than days
-    # so the infectious period is only 1 interation in the loop
-    # this assumes no-one has long covid
-#lockdown        
+    # inf_x = proportion of infected people in x in week i
+    # lockdown        
         if PIA[i] > PCL:
-            #lockdown enforced
+            # lockdown enforced
             inf_A = (PIA[i] * RVL)
         else:
             inf_A = (PIA[i] * RVA) 
         if PIB[i] > PCL:
-            #lockdown enforced
+            # lockdown enforced
             inf_B = (PIB[i] * RVL)
         else:
             inf_B = (PIB[i] * RVB) 
         if PIC[i] > PCL:
-            #lockdown enforced
+            # lockdown enforced
             inf_C = (PIC[i] * RVL)
         else:        
             inf_C = (PIC[i] * RVC)
         if PID[i] > PCL:
-            #lockdown enforced
+            # lockdown enforced
             inf_D = (PID[i] * RVL)
         else:        
             inf_D = (PID[i] * RVD)
         if PIE[i] > PCL:
-            #lockdown enforced
+            # lockdown enforced
             inf_E = (PIE[i] * RVL)
         else:        
             inf_E = (PIE[i] * RVE)
-#flight paths
-        weekly_flights = r.randint(21,49)
+        # flight paths
+        weekly_flights = r.randint(14,35)
+        # between 2 and 5 a day
         print(weekly_flights, 'flights on week',i)
         for x in range(weekly_flights):
             start_index = r.randint(0,4)
@@ -196,8 +190,6 @@ def infection_proportion():
                 elif end_point == 'D':
                     inf_D += PIE[i]*RVE*(plane_size/populations[3])
             # print('plane journey from', start_point, 'to', end_point)
-            # plane_size/populations[x] makes the impact of incoming covid
-            # relative to the size of the destination population 
         PIA.append(inf_A)
         PIB.append(inf_B)
         PIC.append(inf_C)
@@ -250,6 +242,8 @@ def flight1():
         for i in range(30):
             writer.grab_frame()
         flight5()
+    for i in range(30):
+        writer.grab_frame()
             
 def flight2():
     global a,b,c,d,e
@@ -293,178 +287,154 @@ def flight2():
         for i in range(30):
             writer.grab_frame()
         flight5()
-    for i in range(120):
+    for i in range(30):
         writer.grab_frame()
         
 def flight3():
-        global a,b,c,d,e
-        if PIC[weeks] == 0:
-            c+=1
-        elif 0 <PIC[weeks]< 0.025:
-            c+=1
-        elif 0.025 < PIC[weeks]< 0.075:
-            c+=1
-        elif 0.075 < PIC[weeks]< 0.125:
-            c+=1
-        elif 0.125 < PIC[weeks]< 0.175:
-            c+=1
-        nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
-        writer.grab_frame()
-        destination = r.randint(1,5)
-        if destination == 1: 
-            for i in range(n):
-                red_circle1.set_data([100-i],[100-i])
-                writer.grab_frame()
-            for i in range(30):
-                writer.grab_frame()
-            flight1()
-        elif destination == 2:
-            for i in range(n):
-                red_circle1.set_data([100-i],[100])
-                writer.grab_frame()
-            for i in range(30):
-                writer.grab_frame()
-            flight2()
-        elif destination == 3:
-            flight3()
-        elif destination == 4:
-            for i in range(n):
-                red_circle1.set_data([100],[100-i])
-                writer.grab_frame()
-            for i in range(30):
-                writer.grab_frame()
-            flight4()
-        elif destination == 5:
-            for i in range(n):
-                red_circle1.set_data([100-(i/2)],[100-(i/2)])
-                writer.grab_frame()
-            for i in range(30):
-                writer.grab_frame()
-            flight5()
-        for i in range(120):
+    global a,b,c,d,e
+    if PIC[weeks] == 0:
+        c+=1
+    elif 0 <PIC[weeks]< 0.025:
+        c+=1
+    elif 0.025 < PIC[weeks]< 0.075:
+        c+=1
+    elif 0.075 < PIC[weeks]< 0.125:
+        c+=1
+    elif 0.125 < PIC[weeks]< 0.175:
+        c+=1
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
+    writer.grab_frame()
+    destination = r.randint(1,5)
+    if destination == 1: 
+        for i in range(n):
+            red_circle1.set_data([100-i],[100-i])
             writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
+        flight1()
+    elif destination == 2:
+        for i in range(n):
+            red_circle1.set_data([100-i],[100])
+            writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
+        flight2()
+    elif destination == 3:
+        flight3()
+    elif destination == 4:
+        for i in range(n):
+            red_circle1.set_data([100],[100-i])
+            writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
+        flight4()
+    elif destination == 5:
+        for i in range(n):
+            red_circle1.set_data([100-(i/2)],[100-(i/2)])
+            writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
+        flight5()
+    for i in range(30):
+        writer.grab_frame()
+        
 def flight4():
-        global a,b,c,d,e    
-        if PID[weeks] == 0:
-            d+=1
-        elif 0 <PID[weeks]< 0.025:
-            d+=1
-        elif 0.025 < PID[weeks]< 0.075:
-            d+=1
-        elif 0.075 < PID[weeks]< 0.125:
-            d+=1
-        elif 0.125 < PID[weeks]< 0.175:
-            d+=1
-        nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
-        writer.grab_frame()
-        destination = r.randint(1,5)
-        if destination == 1: 
-            for i in range(n):
-                red_circle1.set_data([100-i],[0])
-                writer.grab_frame()
-            for i in range(30):
-                writer.grab_frame()
-            flight1()
-        elif destination == 2:
-            for i in range(n):
-                red_circle1.set_data([100-i],[i])
-                writer.grab_frame()
-            for i in range(30):
-                writer.grab_frame()
-            flight2()
-        elif destination == 3:
-            for i in range(n):
-                red_circle1.set_data([100],[i])
-                writer.grab_frame()
-            for i in range(30):
-                writer.grab_frame()
-            flight3()
-        elif destination == 4:
-            for i in range(n):
-                flight4()
-        elif destination == 5:
-            for i in range(n):
-                red_circle1.set_data([100-(i/2)],[i/2])
-                writer.grab_frame()
-            for i in range(30):
-                writer.grab_frame()
-            flight5()
-        for i in range(120):
+    global a,b,c,d,e    
+    if PID[weeks] == 0:
+        d+=1
+    elif 0 <PID[weeks]< 0.025:
+        d+=1
+    elif 0.025 < PID[weeks]< 0.075:
+        d+=1
+    elif 0.075 < PID[weeks]< 0.125:
+        d+=1
+    elif 0.125 < PID[weeks]< 0.175:
+        d+=1
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
+    writer.grab_frame()
+    destination = r.randint(1,5)
+    if destination == 1: 
+        for i in range(n):
+            red_circle1.set_data([100-i],[0])
             writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
+        flight1()
+    elif destination == 2:
+        for i in range(n):
+            red_circle1.set_data([100-i],[i])
+            writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
+        flight2()
+    elif destination == 3:
+        for i in range(n):
+            red_circle1.set_data([100],[i])
+            writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
+        flight3()
+    elif destination == 4:
+        for i in range(n):
+            flight4()
+    elif destination == 5:
+        for i in range(n):
+            red_circle1.set_data([100-(i/2)],[i/2])
+            writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
+        flight5()
+    for i in range(30):
+        writer.grab_frame()
             
 def flight5():
-#    with writer.saving(fig, "writer_test.mp4", 100):
-        global a,b,c,d,e
-        if PIE[weeks] == 0:
-            e+=1
-        elif 0 <PIE[weeks]< 0.025:
-            e+=1
-        elif 0.025 < PIE[weeks]< 0.075:
-            e+=1
-        elif 0.075 < PIE[weeks]< 0.125:
-            e+=1
-        elif 0.125 < PIE[weeks]< 0.175:
-            e+=1
-        nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
+    global a,b,c,d,e
+    if PIE[weeks] == 0:
+        e+=1
+    elif 0 <PIE[weeks]< 0.025:
+        e+=1
+    elif 0.025 < PIE[weeks]< 0.075:
+        e+=1
+    elif 0.075 < PIE[weeks]< 0.125:
+        e+=1
+    elif 0.125 < PIE[weeks]< 0.175:
+        e+=1
+    nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
+    writer.grab_frame()
+    destination = r.randint(1,5)
+    if destination == 1: 
+        for i in range(n):
+            red_circle1.set_data([50-(i/2)],[50-(i/2)])
+            writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
+        flight1()
+    elif destination == 2:
+        for i in range(n):
+            red_circle1.set_data([50-(i/2)],[50+i/2])
+            writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
+        flight2()
+    elif destination == 3:
+        for i in range(n):
+            red_circle1.set_data([50+i/2],[50+i/2])
+            writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
+        flight3()
+    elif destination == 4:
+        for i in range(n):
+            red_circle1.set_data([50+i/2],[50-(i/2)])
+            writer.grab_frame()
+        for i in range(30):
+            writer.grab_frame()
+        flight4()
+    elif destination == 5:
+        flight5()
+    for i in range(30):
         writer.grab_frame()
-        destination = r.randint(1,5)
-        if destination == 1: 
-            for i in range(n):
-                red_circle1.set_data([50-(i/2)],[50-(i/2)])
-                writer.grab_frame()
-            for i in range(30):
-                writer.grab_frame()
-            flight1()
-        elif destination == 2:
-            for i in range(n):
-                red_circle1.set_data([50-(i/2)],[50+i/2])
-                writer.grab_frame()
-            for i in range(30):
-                writer.grab_frame()
-            flight2()
-        elif destination == 3:
-            for i in range(n):
-                red_circle1.set_data([50+i/2],[50+i/2])
-                writer.grab_frame()
-            for i in range(30):
-                writer.grab_frame()
-            flight3()
-        elif destination == 4:
-            for i in range(n):
-                red_circle1.set_data([50+i/2],[50-(i/2)])
-                writer.grab_frame()
-            for i in range(30):
-                writer.grab_frame()
-            flight4()
-        elif destination == 5:
-            flight5()
-        for i in range(120):
-            writer.grab_frame()
-           
-def node_animation():
-    colours_A = []
-    colours_B = []
-    colours_C = []
-    colours_D = []
-    colours_E = []
 
-    for a in range(weeks):  
-        if PIA[a] == 0:
-            ch = 'green'
-        elif 0 <PIA[a]< 0.025:
-            ch = '#5cb200'
-        elif 0.025 < PIA[a]< 0.075:
-            ch = '#c6f808'
-        elif 0.075 < PIA[a]< 0.125:
-            ch = '#fdff38'
-        elif 0.125 < PIA[a]< 0.175:
-            ch = '#fc824a'
-        nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[ch])  
-        for i in range(60):
-            writer.grab_frame()
-
-
-    
 graph_or_animation = input('Do you want to see a graph or an animation?\nType g or a\n')
 if graph_or_animation == 'g':
         infection_proportion()
@@ -480,11 +450,8 @@ elif graph_or_animation == 'a':
         for i in range (0,len(populations)):
             areas.append((populations[i]/popdensity[i])*100)
             labels[names[i]] = f"airport {i+1}"     
-
         for i in range (0,5):
             g.add_node(names[i],pos=pos[i],)
-
-
         g.add_edges_from([("B","C"),("A","B"),("C","D"),("D","E"),("B","E"),("A","E")])
         g.add_edges_from([("D","A"),("C","E")])
         pos=nx.get_node_attributes(g,'pos')
