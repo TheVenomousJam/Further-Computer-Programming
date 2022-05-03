@@ -13,30 +13,21 @@ import networkx  as nx
 import random as r
 #from furprog_planemap import *
 
-'''
-=========================
-Changeable info for graph
-=========================
-'''
 
-infection_period = int(input("length of infection period\n")) #the number of days one person can infect another
-plane_size = int(input("enter plane size\n")) #number of people on plane
+# =========================
+# Changeable info for graph
+# ========================= 
 airports = ['A','B','C','D','E']
 #100 days is about 14weeks
-weeks = int(input("enter number of weeks simulation will run\n"))
+weeks = int(input("Enter number of weeks simulation will run:\n"))
 week = list(range(weeks+1))
-print(week)
-#just to create a list of week numbers to use for the graph
-#print(week)
+# print(week)
 #PIx = Proportion of people who are infected with covid in x
-
-
-
-PIA = float(input("enter airport A proportion of infected\n"))
-PIB = float(input("enter airport B proportion of infected\n"))
-PIC = float(input("enter airport C proportion of infected\n"))
-PID = float(input("enter airport D proportion of infected\n"))
-PIE = float(input("enter airport E proportion of infected\n"))
+PIA = float(input("Enter airport A proportion of infected:\n"))
+PIB = float(input("Enter airport B proportion of infected:\n"))
+PIC = float(input("Enter airport C proportion of infected:\n"))
+PID = float(input("Enter airport D proportion of infected:\n"))
+PIE = float(input("Enter airport E proportion of infected:\n"))
 PIA = [PIA]
 PIB = [PIB]
 PIC = [PIC]
@@ -52,32 +43,33 @@ PIE = [PIE]
 # =============================================================================
 #PCL = proportion of people with covid that causes a lockdown
 #0.15
-PCL = float(input("proportion of infected to trigger lockdown\n"))
+PCL = float(input("proportion of infected to trigger lockdown:\n"))
 #RVx = R value for x
 #[1.00,0.95,1.05,1.10,0.90]
-RVA = float(input("R value for A"))
-RVB = float(input("R value for B"))
-RVC = float(input("R value for C"))
-RVD = float(input("R value for D"))
-RVE = float(input("R value for E"))
+RVA = float(input("R value for A:\n"))
+RVB = float(input("R value for B:\n"))
+RVC = float(input("R value for C:\n"))
+RVD = float(input("R value for D:\n"))
+RVE = float(input("R value for E:\n"))
 #RVL = the R value during a lockdown
-RVL = float(input("R value during lockdown"))
+RVL = float(input("R value during lockdown:\n"))
 #start_list & end_list act as a flight log to use for the animation
 start_list = []
 end_list = []
 
+# infection_period = int(input("length of infection period (days)\n")) #the number of days one person can infect another
+plane_size = int(input("Enter plane size:\n")) #number of people on plane
+
 node_colours = ['#5cb200','#c6f808','#fdff38','#fc824a','#ec2d01']
-#'''
 #=========================
-'''
-'''
+
 #=========================
 #Changeable info for animation
 #=========================
-'''
+
 # at the moment this is commented out so that the network diagram 
 # doesnt overlap with the graph, need to find a way to make this not happen.
-'''
+
 f = 100
 n = 101
 g =nx.Graph()
@@ -106,7 +98,7 @@ nodeSize = []
 labels={}
 areas = []
 
-#'''
+
 #'''
 #=========================
 #'''
@@ -146,7 +138,7 @@ def infection_proportion():
         else:        
             inf_E = (PIE[i] * RVE)
 #flight paths
-        weekly_flights = r.randint(0,5)
+        weekly_flights = r.randint(21,49)
         print(weekly_flights, 'flights on week',i)
         for x in range(weekly_flights):
             start_index = r.randint(0,4)
@@ -160,64 +152,58 @@ def infection_proportion():
             # this long if statement is adding the covid from the flights to the current infection rates.
             if start_point == 'A':
                 if end_point == 'B':
-                    inf_B += PIA[i]*RVA/10
+                    inf_B += PIA[i]*RVA*(plane_size/populations[1])
                 elif end_point == 'C':
-                    inf_C += PIA[i]*RVA/10
+                    inf_C += PIA[i]*RVA*(plane_size/populations[2])
                 elif end_point == 'D':
-                    inf_D += PIA[i]*RVA/10 
+                    inf_D += PIA[i]*RVA*(plane_size/populations[3]) 
                 elif end_point == 'E':
-                    inf_E += PIA[i]*RVA/10
+                    inf_E += PIA[i]*RVA*(plane_size/populations[4])
             elif start_point == 'B':
                 if end_point == 'A':
-                    inf_A += PIB[i]*RVB/10 
+                    inf_A += PIB[i]*RVB*(plane_size/populations[0])
                 elif end_point == 'C':
-                    inf_C += PIB[i]*RVB/10
+                    inf_C += PIB[i]*RVB*(plane_size/populations[2])
                 elif end_point == 'D':
-                    inf_D += PIB[i]*RVB/10 
+                    inf_D += PIB[i]*RVB*(plane_size/populations[3]) 
                 elif end_point == 'E':
-                    inf_E += PIB[i]*RVB/10
+                    inf_E += PIB[i]*RVB*(plane_size/populations[4])
             elif start_point == 'C':
                 if end_point == 'A':
-                    inf_A += PIC[i]*RVC/10
+                    inf_A += PIC[i]*RVC*(plane_size/populations[0])
                 elif end_point == 'B':
-                    inf_B += PIC[i]*RVC/10
+                    inf_B += PIC[i]*RVC*(plane_size/populations[1])
                 elif end_point == 'D':
-                    inf_D += PIC[i]*RVC/10
+                    inf_D += PIC[i]*RVC*(plane_size/populations[3])
                 elif end_point == 'E':
-                    inf_E += PIC[i]*RVC/10
+                    inf_E += PIC[i]*RVC*(plane_size/populations[4])
             elif start_point == 'D':
                 if end_point == 'A':
-                    inf_A += PID[i]*RVD/10
+                    inf_A += PID[i]*RVD*(plane_size/populations[0])
                 elif end_point == 'B':
-                    inf_B += PID[i]*RVD/10
+                    inf_B += PID[i]*RVD*(plane_size/populations[1])
                 elif end_point == 'C':
-                    inf_C += PID[i]*RVD/10
+                    inf_C += PID[i]*RVD*(plane_size/populations[2])
                 elif end_point == 'E':
-                    inf_E += PID[i]*RVD/10
+                    inf_E += PID[i]*RVD*(plane_size/populations[4])
             elif start_point == 'E':
                 if end_point == 'A':
-                    inf_A += PIE[i]*RVE/10
+                    inf_A += PIE[i]*RVE*(plane_size/populations[0])
                 elif end_point == 'B':
-                    inf_B += PIE[i]*RVE/10
+                    inf_B += PIE[i]*RVE*(plane_size/populations[1])
                 elif end_point == 'C':
-                    inf_C += PIE[i]*RVE/10
+                    inf_C += PIE[i]*RVE*(plane_size/populations[2])
                 elif end_point == 'D':
-                    inf_D += PIE[i]*RVE/10
-            print('plane journey from', start_point, 'to', end_point)
-            #/10 as number of people on plane is far less than total pop.
-            #probably should be more than /10, plane size/pop = 1/100
-            #but making it 1/100 makes the infection increase pretty small
+                    inf_D += PIE[i]*RVE*(plane_size/populations[3])
+            # print('plane journey from', start_point, 'to', end_point)
+            # plane_size/populations[x] makes the impact of incoming covid
+            # relative to the size of the destination population 
         PIA.append(inf_A)
         PIB.append(inf_B)
         PIC.append(inf_C)
         PID.append(inf_D)
         PIE.append(inf_E)
 
-        
-
-
-
-    #print('A', PIA,'\nB', PIB,'\nC', PIC,'\nD', PID,'\nE', PIE)     
 # these functions create the path for the plane to follow
 def flight1():
     global a,b,c,d,e
@@ -232,7 +218,6 @@ def flight1():
     elif 0.125 < PIA[weeks]< 0.175:
         a += 4
     nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
-
     writer.grab_frame()
     destination = r.randint(1,5)
     if destination == 1: 
@@ -268,7 +253,6 @@ def flight1():
             
 def flight2():
     global a,b,c,d,e
-  
     if PIB[weeks] == 0:
         b=b
     elif 0 <PIB[weeks]< 0.025:
@@ -280,8 +264,7 @@ def flight2():
     elif 0.125 < PIB[weeks]< 0.175:
         b+=4
     nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
-    for i in range(10):
-        writer.grab_frame()
+    writer.grab_frame()
     destination = r.randint(1,5)
     if destination == 1: 
         for i in range(n):
@@ -312,9 +295,9 @@ def flight2():
         flight5()
     for i in range(120):
         writer.grab_frame()
+        
 def flight3():
         global a,b,c,d,e
-      
         if PIC[weeks] == 0:
             c+=1
         elif 0 <PIC[weeks]< 0.025:
@@ -326,7 +309,6 @@ def flight3():
         elif 0.125 < PIC[weeks]< 0.175:
             c+=1
         nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
-
         writer.grab_frame()
         destination = r.randint(1,5)
         if destination == 1: 
@@ -363,7 +345,6 @@ def flight3():
             writer.grab_frame()
 def flight4():
         global a,b,c,d,e    
-  
         if PID[weeks] == 0:
             d+=1
         elif 0 <PID[weeks]< 0.025:
@@ -375,7 +356,6 @@ def flight4():
         elif 0.125 < PID[weeks]< 0.175:
             d+=1
         nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
-
         writer.grab_frame()
         destination = r.randint(1,5)
         if destination == 1: 
@@ -415,7 +395,6 @@ def flight4():
 def flight5():
 #    with writer.saving(fig, "writer_test.mp4", 100):
         global a,b,c,d,e
-      
         if PIE[weeks] == 0:
             e+=1
         elif 0 <PIE[weeks]< 0.025:
@@ -427,8 +406,7 @@ def flight5():
         elif 0.125 < PIE[weeks]< 0.175:
             e+=1
         nx.draw(g,pos,node_size=areas,labels=labels,with_labels=(False),node_color=[node_colours[a],node_colours[b],node_colours[c],node_colours[d],node_colours[e]])  
-        for i in range(30):
-            writer.grab_frame()
+        writer.grab_frame()
         destination = r.randint(1,5)
         if destination == 1: 
             for i in range(n):
