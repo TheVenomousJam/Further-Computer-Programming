@@ -33,13 +33,3 @@ and edges between them
 random : used for random flight path 
 
 
-"""""
----- code ---- 
-most of code contained inside Covid_animation_that_works.py, 
-first section of code handles user input for variables such as 
-duration of simulation and individual infection rates and number of 
-cases as well as lockdown trigger.
-
-the list node colours contains the colours iterated through dependent
-on the proportion of cases within each airport.
-"""""
