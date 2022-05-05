@@ -42,7 +42,7 @@ def AIRPORT1():
         return daysContagious, lockdownDay1, lockdownDay2, lockdownDay3, lockdownDay4, lockdownDay5, lockdownDay6, lockdownDay7, lockdownEnd1, lockdownEnd2, lockdownEnd3, lockdownEnd4, lockdownEnd5, lockdownEnd6, lockdownEnd7
     def CovidSpread(daysContagious, lockdown):
         for person in [person for person in peopleDictionary if person.contagiousness>0 and person.friends>0]:
-            peopleCouldMeetToday = int(person.friends)
+            peopleCouldMeetToday = int(person.friends/2)
             if peopleCouldMeetToday > 0:
                 peopleMetToday = random.randint(0,peopleCouldMeetToday)
             else:
@@ -112,7 +112,7 @@ def AIRPORT2():
             self.friends = int((norm.rvs(size=1,loc=0.5,scale=0.15)[0]*10).round(0)) #use a gaussian distribution for avg friends
         
     def CovidSimulation():
-        numPeople = 600000
+        numPeople = 234500
         startingImmunity = 10
         startingInfecters = 1
         for x in range(0,numPeople):
@@ -207,7 +207,7 @@ def AIRPORT3():
             self.friends = int((norm.rvs(size=1,loc=0.5,scale=0.15)[0]*10).round(0)) #use a gaussian distribution for avg friends
         
     def CovidSimulation():
-        numPeople = 436656
+        numPeople = 300000
         startingImmunity = 5
         startingInfecters = 1
         for x in range(0,numPeople):
@@ -302,7 +302,7 @@ def AIRPORT4():
             self.friends = int((norm.rvs(size=1,loc=0.5,scale=0.15)[0]*10).round(0)) #use a gaussian distribution for avg friends
         
     def CovidSimulation():
-        numPeople = 30685
+        numPeople = 500000
         startingImmunity = 1
         startingInfecters = 1
         for x in range(0,numPeople):
@@ -397,7 +397,7 @@ def AIRPORT5():
             self.friends = int((norm.rvs(size=1,loc=0.5,scale=0.15)[0]*10).round(0)) #use a gaussian distribution for avg friends
         
     def CovidSimulation():
-        numPeople = 235460
+        numPeople = 1000000
         startingImmunity = 1
         startingInfecters = 1
         for x in range(0,numPeople):
