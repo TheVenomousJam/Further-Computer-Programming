@@ -10,15 +10,16 @@ It highlights the need for stricter regulations early
 on in the pandemic to prevent smaller countries from becoming
 overrun with cases.
 
----requirements to run the code--- 
+--- requirements to run the code --- 
 
 maplotlib.pyplot
 maplotlib.animation 
 networkx 
 random 
+numpy
+from scipy.stats, norm
 
 --- instructions --- 
-
 
 input all variables as you wish and choose between an animation   
 or graph, graph just produces a graph, if choosing aimation allow code to run 
@@ -48,3 +49,19 @@ RVL = the R value during a lockdown
 RVL = 0.6
 
 plane_size = number of peope on the planes
+
+--- instructions for running Airport_CovidSim_graphs --- 
+
+Running this code will produce a graph with all 5 locations
+covid journey. Each airport has a 10x bigger population than
+the populations used in the covid travel animations
+to make it more realistic.
+
+To edit any variables please open Airports_CovidSim as this is 
+the bulk of the code.
+
+The variables are all currently set the same as to keep it fair
+between each location. However, you could change the variables
+startingImmunity to give a higher number of people who could never 
+contract the virus and startingInfecters to increase the speed in which 
+the virus is passed through the population.
