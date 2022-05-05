@@ -190,5 +190,5 @@ def infection_proportion():
 
 
 
-with writer.saving(fig, "writer_test.mp4", 100):
+with writer.saving(fig, "graph_test.mp4", 100):
     infection_proportion()
