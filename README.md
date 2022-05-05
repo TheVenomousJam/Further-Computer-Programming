@@ -8,7 +8,7 @@ during a pandemic can affect transmission of covid
 as well as the affect of lockdowns on the spread. 
 It highlights the need for stricter regulations early 
 on in the pandemic to prevent smaller countries from becoming
-overrun with cases.
+overrun with cases. Our main files are Covid_animation_that_works, covid_travel_animation and Airport_CovidSim_graphs.py
 
 --- requirements to run the code --- 
 
