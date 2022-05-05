@@ -42,7 +42,7 @@ def AIRPORT1():
         return daysContagious, lockdownDay1, lockdownDay2, lockdownDay3, lockdownDay4, lockdownDay5, lockdownDay6, lockdownDay7, lockdownEnd1, lockdownEnd2, lockdownEnd3, lockdownEnd4, lockdownEnd5, lockdownEnd6, lockdownEnd7
     def CovidSpread(daysContagious, lockdown):
         for person in [person for person in peopleDictionary if person.contagiousness>0 and person.friends>0]:
-            peopleCouldMeetToday = int(person.friends/2)
+            peopleCouldMeetToday = int(person.friends)
             if peopleCouldMeetToday > 0:
                 peopleMetToday = random.randint(0,peopleCouldMeetToday)
             else:
