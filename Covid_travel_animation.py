@@ -11,55 +11,32 @@ import networkx  as nx
 import random as r
 #from furprog_planemap import *
 
-'''
-=========================
-Changeable info for graph
-=========================
-'''
 
-infection_period = int(input("length of infection period\n")) #the number of days one person can infect another
-plane_size = int(input("enter plane size\n")) #number of people on plane
+infection_period = 1 #the number of days one person can infect another
+plane_size = 100 #number of people on plane
 airports = ['A','B','C','D','E']
 #100 days is about 14weeks
-weeks = int(input("enter number of weeks simulation will run\n"))
+weeks = 100
 week = list(range(weeks+1))
-print(week)
+
 #just to create a list of week numbers to use for the graph
 #print(week)
 #PIx = Proportion of people who are infected with covid in x
-
-
-
-PIA = float(input("enter airport A proportion of infected\n"))
-PIB = float(input("enter airport B proportion of infected\n"))
-PIC = float(input("enter airport C proportion of infected\n"))
-PID = float(input("enter airport D proportion of infected\n"))
-PIE = float(input("enter airport E proportion of infected\n"))
-PIA = [PIA]
-PIB = [PIB]
-PIC = [PIC]
-PID = [PID]
-PIE = [PIE]
-
-# =============================================================================
-# PIA = [0.00]
-# PIB = [0.01]
-# PIC = [0.02]
-# PID = [0.04]
-# PIE = [0.07]
-# =============================================================================
+PIA = [0.00]
+PIB = [0.01]
+PIC = [0.02]
+PID = [0.04]
+PIE = [0.07]
 #PCL = proportion of people with covid that causes a lockdown
-#0.15
-PCL = float(input("proportion of infected to trigger lockdown\n"))
+PCL = 0.15
 #RVx = R value for x
-#[1.00,0.95,1.05,1.10,0.90]
-RVA = float(input("R value for A"))
-RVB = float(input("R value for B"))
-RVC = float(input("R value for C"))
-RVD = float(input("R value for D"))
-RVE = float(input("R value for E"))
+RVA = 1.00
+RVB = 0.95
+RVC = 1.05
+RVD = 1.10
+RVE = 0.90
 #RVL = the R value during a lockdown
-RVL = float(input("R value during lockdown"))
+RVL = 0.6
 #start_list & end_list act as a flight log to use for the animation
 start_list = []
 end_list = []
@@ -69,7 +46,7 @@ end_list = []
 FFMpegWriter = manimation.writers['ffmpeg']
 metadata = dict(title='Movie Test', artist='Matplotlib',
                 comment='red circles following edges')
-writer = FFMpegWriter(fps=60, metadata=metadata)
+writer = FFMpegWriter(fps=30, metadata=metadata)
 fig = plt.figure()
 def infection_proportion():
     for i in range(weeks):
@@ -175,9 +152,13 @@ def infection_proportion():
     for z in range(weeks):
         plot1 = plt.figure(1)
         plt.plot(week[z:z+2],PIA[z:z+2])
+        writer.grab_frame()
         plt.plot(week[z:z+2],PIB[z:z+2])
+        writer.grab_frame()
         plt.plot(week[z:z+2],PIC[z:z+2])
+        writer.grab_frame()
         plt.plot(week[z:z+2],PID[z:z+2])
+        writer.grab_frame()
         plt.plot(week[z:z+2],PIE[z:z+2])
         plt.legend(airports)
         writer.grab_frame()
@@ -209,5 +190,5 @@ def infection_proportion():
 
 
 
-with writer.saving(fig, "writer_test.mp4", 100):
+with writer.saving(fig, "graph_test.mp4", 100):
     infection_proportion()

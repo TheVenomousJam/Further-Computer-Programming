@@ -446,7 +446,7 @@ if graph_or_animation == 'g':
         plt.legend(airports)
         plt.show()
 elif graph_or_animation == 'a':
-    with writer.saving(fig, "writer_test.mp4", 100):    
+    with writer.saving(fig, "Airport_travel_covid_simulation.mp4", 100):    
         for i in range (0,len(populations)):
             areas.append((populations[i]/popdensity[i])*100)
             labels[names[i]] = f"airport {i+1}"     
