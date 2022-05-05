@@ -18,7 +18,7 @@ networkx
 random 
 
 --- instructions --- 
-(need to figure this part out) 
+
 
 input all variables as you wish and choose between an animation   
 or graph, graph just produces a graph, if choosing aimation allow code to run 
